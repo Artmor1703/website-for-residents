@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block title %} Голосование {% endblock %}
+
+{% block header %}
+<li><a href="{% url 'profile'%}" class="nav-link px-2 text-white">Личный кабинет</a></li>
+<li><a href="{% url 'quiz'%}" class="nav-link px-2 text-white">Голосование</a></li>
+<li><a href="{% url 'feed'%}" class="nav-link px-2 text-white">Обратная связь</a></li>
+{% endblock %}
+
+{% block button%}
+<a href="{% url 'home'%}">
+<button type="button" class="btn btn-outline-light me-2" >Главная </button>
+</a>
+<a href="{% url 'logout'%}">
+<button type="button" class="btn btn-outline-light me-2" >Выйти </button>
+</a>
+{% endblock %}
+
+{% block body %}
+<body>
+
+<h3 style = "margin-bottom: 20px; text-align:center"><strong>Выберите вариант ответа</strong></h3>
+
+<h4 style="text-align:center">{{question.title}}</h4>
+
+<form method="POST" >
+    {% csrf_token %}
+<ul class="list-group">
+    {% for option in options %}
+    <label>
+        <li class="list-group-item"  style="margin-left:40%; margin-right:40%;">
+            <input class="form-check-input me-1" type="radio" name = 'choice' value="{{option.id}}" aria-label="...">
+            {{option.title}}
+          </li>
+    </label>
+    {% endfor %}
+
+</ul>
+    <div style="text-align:center;margin-top:20px ">
+<input type="submit" value = "Submit" class = 'btn btn-primary'>
+        </div>
+</form>
+
+</body>
+{% endblock %}

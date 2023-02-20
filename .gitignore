@@ -1,0 +1,7 @@
+/venv/
+*.pyc
+*.рус
+.idea/**/misc.xml
+.idea/WebSiteForTSG.iml
+/.idea/
+TSG/db.sqlite3

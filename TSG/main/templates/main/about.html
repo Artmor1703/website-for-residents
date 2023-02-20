@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+
+{% block title %} О нас {% endblock %}
+
+{% block header %}
+<li><a href="{% url 'home'%}" class="nav-link px-2 text-white">Главная</a></li>
+<li><a href="{% url 'about'%}" class="nav-link px-2 text-secondary">О нас</a></li>
+{% endblock %}
+
+ {% block button%}
+ <a href="{% url 'profile'%}">
+<button type="button" class="btn btn-warning" >Войти </button>
+</a>
+{% endblock %}
+
+{% block body %}
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Дорогой Гость!</h1>
+    <h2> Приветствуем Вас на нашем сайте!</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+ Мы сообщество жителей, объединенных общей целью сделать наш район безопасным и комфортным местом для жизни. Наша ассоциация была создана для того, чтобы наши дома содержались в хорошем состоянии и чтобы любые возникающие проблемы решались оперативно. Мы стремимся создать дружелюбное и поддерживающее сообщество, в котором наши жители могут процветать.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

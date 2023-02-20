@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+<link href="list-groups.css" rel="stylesheet">
+{% block title %} Голосование {% endblock %}
+
+{% block header %}
+<li><a href="{% url 'profile'%}" class="nav-link px-2 text-white">Личный кабинет</a></li>
+<li><a href="{% url 'quiz'%}" class="nav-link px-2 text-secondary">Голосование</a></li>
+<li><a href="{% url 'feed'%}" class="nav-link px-2 text-white">Обратная связь</a></li>
+{% endblock %}
+
+ {% block button%}
+<a href="{% url 'home'%}">
+<button type="button" class="btn btn-outline-light me-2" >Главная </button>
+</a>
+<a href="{% url 'logout'%}">
+<button type="button" class="btn btn-outline-light me-2" >Выйти </button>
+</a>
+{% endblock %}
+
+{% block body %}
+<body>
+    <h1 style="text-align:center"> Доступные опросы</h1>
+    <ul class="list-group" style="margin-left:25%; margin-right:25%; margin-top:30px; ">
+    {% for question in questions %}
+    <a href=" {% url 'vote' question.id %} " class="list-group-item list-group-item-action">
+        {% if question in answers %}
+        <h5 style="color: green;">{{question.title}}</h5></a>
+        {% else %}
+          <h5>{{question.title}}</h5></a>
+      {% endif%}
+   {% endfor %}
+    </ul>
+
+
+</body>
+{% endblock %}

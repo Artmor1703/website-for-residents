@@ -1,0 +1,96 @@
+{% extends 'base.html'%}
+
+{% block title %} Главная страница {% endblock %}
+
+{% block header %}
+<li><a href="{% url 'home'%}" class="nav-link px-2 text-secondary">Главная</a></li>
+<li><a href="{% url 'about'%}" class="nav-link px-2 text-white">О нас</a></li>
+{% endblock %}
+
+ {% block button%}
+ <a href="{% url 'profile'%}">
+<button type="button" class="btn btn-warning" >Войти </button>
+</a>
+{% endblock %}
+
+
+<!--================================================================================-->
+{% block body %}
+
+<main>
+
+<!--carusel-->
+<!--================================================================================-->
+{% load static %}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+      <img class="d-block w-100" src="{%  static '1.png'%}" width="30%" height="600">
+
+    </div>
+    <div class="carousel-item">
+
+      <img class="d-block w-100" src="{%  static '2.png'%}" width="30%" height="600">
+
+    </div>
+    <div class="carousel-item">
+
+      <img class="d-block w-100" src="{%  static '4.png'%}" width="30%" height="600">
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!--================================================================================-->
+
+<!--News-->
+<!--================================================================================-->
+
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Новости</h1>
+  </div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for el in news %}
+        <div class="card-group">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{el.title}}</h5>
+<!--              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+              <p class="card-text">{{el.descr}}</p>
+
+              <div class="text-muted">
+              {{el.time}}
+              </div>
+<!--              <a href="#" class="card-link">Card link</a>-->
+<!--              <a href="#" class="card-link">Another link</a>-->
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  <!--================================================================================-->
+</main>
+{% endblock %}
+

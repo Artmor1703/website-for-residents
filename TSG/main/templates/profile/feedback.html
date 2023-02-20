@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+
+{% block title %} Обратная связь {% endblock %}
+
+{% block header %}
+<li><a href="{% url 'profile'%}" class="nav-link px-2 text-white">Личный кабинет</a></li>
+<li><a href="{% url 'quiz'%}" class="nav-link px-2 text-white">Голосование</a></li>
+<li><a href="{% url 'feed'%}" class="nav-link px-2 text-secondary">Обратная связь</a></li>
+<!--<li><a href="#" class="nav-link px-2 text-white">О нас</a></li>-->
+{% endblock %}
+
+ {% block button%}
+<a href="{% url 'home'%}">
+<button type="button" class="btn btn-outline-light me-2" >Главная </button>
+</a>
+<a href="{% url 'logout'%}">
+<button type="button" class="btn btn-outline-light me-2" >Выйти </button>
+</a>
+{% endblock %}
+
+{% block body %}
+<!-- Тайтл -->
+    <div class="py-5 text-center">
+      <h2>Обратная связь</h2>
+      <p class="lead">Здесь Вы можете оставить свое сообщение нам. Мы ответим в ближайшее время.</p>
+    </div>
+<!-- Тайтл -->
+
+<!-- Вопросы-ответы -->
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+        <form method="POST" class="needs-validation" novalidate="">
+         {% csrf_token %}
+          <div class="card w-75 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Вопрос/отзыв</h5>
+                <input type="email" class="form-control" id="title" placeholder="Укажите тему письма" name='title'>
+                <br>
+                 <textarea class="form-control" id="question" placeholder="Напишите сообщение..." name='question' rows="3"></textarea>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="submit">Отправить</button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      </form>
+        <!-- Вопросы-ответы -->
+   <div class="py-5 text-center">
+      <h2>История</h2>
+      <p class="lead">Здесь показаны все Ваши обращения</p>
+    </div>
+<!--История-->
+<div class="album py-5 bg-light">
+    <div class="container">
+        {% for el in feedback %}
+
+        <div class="card w-75 mb-3">
+        <div class="card-body">
+            <h5 class="card-title"> {{ el.title }} </h5>
+            <div class="d-grid gap-2 col-6 mx-auto">
+            </div>
+             <p class="card-text">{{ el.question }} </p>
+            <div class="text-muted">
+              {{el.time_quest}}
+              </div>
+            <p class="card-text">{{ el.answer }} </p>
+            <div class="text-muted"> {{ el.time_answer }} </div>
+
+        </div>
+      </div>
+        {% endfor %}
+    <!--История-->
+      </div>
+    </div>
+
+
+{% endblock %}
