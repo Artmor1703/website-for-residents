@@ -47,10 +47,10 @@ def profile(request):
     if request.method == 'POST':
         telenum = request.POST['telenum']
         email = request.POST['email']
-        if not (len(telenum) <= 10 and len(telenum) > 0 and telenum.isdigit() == True and "@" in email and "."
-                in email and len(email) > 8 and telenum != '8' + str(request.user.telenum) and email !=  request.user.email):
+        if not ((len(telenum) == 10 and telenum.isdigit()) or ("@" in email and "."
+                in email and len(email) > 8) and telenum != '8' + str(request.user.telenum) and email != request.user.email):
             return redirect('profile')
-        if len(telenum) <= 10 and len(telenum) > 0 and telenum.isdigit() == True:
+        if len(telenum) == 10 and telenum.isdigit():
             request.user.telenum = '8' + telenum
         if "@" in email and "." in email and len(email) > 8:
              request.user.email = email
